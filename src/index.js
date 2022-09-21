@@ -1,6 +1,7 @@
 // 1. Importaciones
 
-const express = require("express");
+require('dotenv').config();
+const express = require('express');
 const app = express();
 const PORT = 4000;
 
@@ -10,14 +11,14 @@ app.use(express.json());
 
 // 3. Rutas
 
-app.get("/body", (req, res) => {
+app.get("/", (req, res) => {
   res.json({
-    msg: req.body.msg
+    msg: 'Se obtuvo elemento'
   });
 });
 
 // 4. Servidor
 
-app.listen(PORT, () => {
-  console.log(`Servidor en línea en el puerto ${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log('Servidor inciado en el puerto ' + process.env.PORT);
 });
