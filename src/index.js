@@ -2,8 +2,11 @@
 
 require('dotenv').config();
 const express = require('express');
+const { dbConnection } = require("./database/config")
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
+
+dbConnection();
 
 // 2. Middlewares
 
@@ -13,12 +16,17 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.json({
-    msg: 'Se obtuvo elemento'
+    msg: 'Bienvenido a la API',
+    autor: process.env.AUTOR,
   });
 });
 
+app.use("/api/users", require("./routes/users.routes")); // usuarios
+app.use("/api/products", require("./routes/products.routes")); // productos
+app.use("/api/auth", require("./routes/auth.routes")); // autorizaciones
+
 // 4. Servidor
 
-app.listen(process.env.PORT, () => {
-  console.log('Servidor inciado en el puerto ' + process.env.PORT);
+app.listen(PORT, () => {
+  console.log('Servidor inciado en el puerto ' + PORT);
 });
