@@ -1,6 +1,7 @@
 // 1. Importaciones
 
 require('dotenv').config();
+const cors = require("cors");
 const express = require('express');
 const { dbConnection } = require("./database/config")
 const app = express();
@@ -10,6 +11,7 @@ dbConnection();
 
 // 2. Middlewares
 
+app.use(cors()); // Permisos para intercambio de dominio (dominio cruzado)
 app.use(express.json());
 
 // 3. Rutas
