@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const { validarJWT } = require("../middlewares/jwt.middleware");
 
 const {
   getProduct,
@@ -9,7 +10,7 @@ const {
 
 const router = Router();
 
-router.get("/", getProduct);
+router.get("/", validarJWT, getProduct);
 router.post("/", postProduct);
 router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);

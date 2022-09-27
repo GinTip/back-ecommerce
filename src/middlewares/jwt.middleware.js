@@ -7,29 +7,29 @@ const validarJWT = async (req, res, next) => {
   if (!token) {
     return res.status(401).json({
       ok: false,
-      msg: "No hay token, permiso no valido",
+      msg: "No hay token, permiso no válido",
     });
   }
 
   try {
     const { id } = jwt.verify(token, process.env.SECRET)
 
-  const usuario = await User.findById(id)
+    const usuario = await User.findById(id)
 
-  if(!usuario) {
-    return res.status(401).json({
+    if (!usuario) {
+      return res.status(401).json({
         ok: false,
-        msg: "Token no valido",
-    })
-  }
+        msg: "Token no válido",
+      })
+    }
 
-  req.usuario = usuario
-  next();
-  
+    req.usuario = usuario
+    next(); // Proceder con el controlador
+
   } catch (error) {
     return res.status(500).json({
-        ok: false,
-        msg: "Error en el servidor",
+      ok: false,
+      msg: "Error en el servidor",
     })
   }
 

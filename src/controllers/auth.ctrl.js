@@ -5,18 +5,18 @@ const { generarJWT } = require("../helpers/jwt.helper");
 const registerUser = async (req, res) => {
   const { email, username, password } = req.body;
 
-  const emailEncontrado = await User.findOne({email: email});
+  const emailEncontrado = await User.findOne({ email: email });
 
-  if(emailEncontrado) {
+  if (emailEncontrado) {
     return res.status(400).json({
       ok: false,
       msg: `Error, el correo ${emailEncontrado.email} ya está registrado`,
     })
   }
 
-  const usernameEncontrado = await User.findOne({username: username});
-  
-  if(usernameEncontrado) {
+  const usernameEncontrado = await User.findOne({ username: username });
+
+  if (usernameEncontrado) {
     return res.status(400).json({
       ok: false,
       msg: `Error, el username ${usernameEncontrado.username} ya está registrado`,
@@ -46,9 +46,9 @@ const registerUser = async (req, res) => {
 const login = async (req, res) => {
   const { username, password } = req.body;
 
-  const user = await User.findOne({username});
+  const user = await User.findOne({ username });
 
-  if(!user) {
+  if (!user) {
     return res.status(404).json({
       ok: false,
       msg: "Usuario y/o contraseña incorrecto/s",
@@ -57,7 +57,7 @@ const login = async (req, res) => {
 
   const validarPassword = bcrypt.compareSync(password, user.password)
 
-  if(!validarPassword) {
+  if (!validarPassword) {
     return res.status(404).json({
       ok: false,
       msg: "Usuario y/o contraseña incorrecto/s",
