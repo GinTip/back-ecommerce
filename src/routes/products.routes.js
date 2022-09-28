@@ -10,7 +10,7 @@ const {
 
 const router = Router();
 
-router.get("/", validarJWT, getProduct);
+router.get("/", getProduct);
 router.post("/", postProduct);
 router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);

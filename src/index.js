@@ -15,7 +15,7 @@ app.use(express.json());
 // 3. Rutas
 app.get("/", (req, res) => {
   res.json({
-    msg: 'Bienvenido a la API de',
+    msg: 'Bienvenido a la API',
     autor: process.env.AUTOR,
   });
 });
