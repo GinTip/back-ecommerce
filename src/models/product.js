@@ -13,8 +13,13 @@ const ProductSchema =  Schema({
     default: "Descripción del producto",
   },
 
+  image: {
+    type: String,
+    default: "https://res.cloudinary.com/dgvdlmprt/image/upload/v1665599877/products-doodle/DOODLE-NO-DISPONIBLE_yew7lr.png",
+  },
+
   price: {
-    price: Number,
+    type: Number,
   }
   
 });
