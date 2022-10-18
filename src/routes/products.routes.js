@@ -6,11 +6,13 @@ const {
   postProduct,
   updateProduct,
   deleteProduct,
+  obtenerProducto,
 } = require("../controllers/products.ctrl");
 
 const router = Router();
 
 router.get("/", getProduct);
+router.get("/:idProducto", obtenerProducto);
 router.post("/", postProduct);
 router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);

@@ -73,4 +73,5 @@ module.exports = {
   postProduct,
   updateProduct,
   deleteProduct,
+  obtenerProducto,
 };
