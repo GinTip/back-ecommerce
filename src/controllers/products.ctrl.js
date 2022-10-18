@@ -10,6 +10,16 @@ const getProduct = async (req, res) => { // Obtener productos
   });
 };
 
+const obtenerProducto = async (req, res) => {
+  const { idProducto } = req.params;
+  const producto = await Product.findById(idProducto);
+
+  return res.json({
+    msg: "Producto obtenido",
+    data: producto,
+  });
+};
+
 const postProduct = async (req, res) => {  // Crear producto
   const { name, description, price } = req.body;
 
